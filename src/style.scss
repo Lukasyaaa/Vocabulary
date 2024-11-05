@@ -1,0 +1,210 @@
+body, fieldset, input{
+    margin: 0;
+}
+fieldset, button{
+    padding: 0;
+    border: 0;
+}
+button:not([disabled]), input[type="checkbox"]{
+    cursor: pointer;
+}
+
+body{
+    background-color: #F0CAA3;
+}
+body, .app{
+    min-height: 100vh;
+}
+
+.container{
+    width: 1260px;
+    padding: 0 15px;
+    margin: 0 auto;
+}
+
+.app:not(._start) .container{
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 25px;
+}
+.app._start{
+    position: relative;
+    z-index: 1;
+}
+.app{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &__start{
+        font-family: "Yeseva One", serif;
+        font-weight: 400;
+        font-size: 65px;
+        color: #fff;
+
+        padding: 20px 35px;
+        background-color: #8B67B1;
+        border-radius: 35px;
+
+        transition: opacity 0.3s cubic-bezier(0.19, 1, 0.22, 1),
+        box-shadow 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+    &__start[disabled]{
+        opacity: 0.7;
+    }
+    &__start:not([disabled]):focus{
+        outline: none;
+        box-shadow: inset 0 0 15px #fff,
+        0 0 35px #8B67B1;
+    }
+    @media (any-hover: hover) {
+        &__start:not([disabled]):hover{
+            box-shadow: inset 0 0 15px #fff,
+            0 0 35px #8B67B1;
+        }
+    }
+
+    &__options{
+        border: 5px double #fff;
+        padding: 10px 15px;
+    }
+
+    &__title{
+        padding: 5px 10px;
+        background-color: #fff;
+        border-radius: 10px;
+
+        font-family: "Yeseva One", serif;
+        font-weight: 400;
+        font-size: 35px;
+        color: #000;
+    }
+
+    &__option{
+        display: flex;
+        align-items: center;
+        &:not(:last-child){
+            margin-bottom: 5px;
+        }
+    }
+
+    &__word{
+        text-align: center;
+
+        font-family: "Yeseva One", serif;
+        font-weight: 400;
+        font-size: 100px;
+        color: #8B67B1;
+    }
+
+    &__button{
+        position: fixed;
+        z-index: 1;
+        right: 15px;
+        bottom: 15px;
+    
+        text-align: center;
+        font-family: "Yeseva One", serif;
+        font-weight: 400;
+        font-size: 15px;
+        color: #fff;
+        
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        border: 5px double #fff;
+        background-color: #8B67B1;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        padding: 7px;
+
+        transition: filter 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+    &__button:focus{
+        outline: none;
+        filter: drop-shadow(0 0 5px #8B67B1);
+    }
+    @media (any-hover: hover) {
+        &__button:hover{
+            filter: drop-shadow(0 0 5px #8B67B1);
+        }
+    }
+
+    &__next{
+        right: calc(15px + 60px + 10px);
+    }
+}
+.option-app{
+    &__input{
+        appearance: none;
+        border-radius: 5px;
+        
+        width: 20px;
+        height: 20px;
+
+        &:focus{
+            outline: none;
+        }
+    }
+    &__subinput{
+        text-shadow: 0 0 5px #555;
+        font-family: "Yeseva One", serif;
+        font-weight: 400;
+        font-size: 20px;
+        color: #fff;
+
+        position: relative;
+        z-index: 1;
+        padding-left: 5px;
+        &::after{
+            content: "";
+            pointer-events: none;
+
+            position: absolute;
+            z-index: 1;
+            left: 0;
+            top: 50%;
+            z-index: 1;
+            transform: translateY(-50%) translateX(-100%);
+
+            background-color: #fff;
+            border-radius: 5px;
+            width: 20px;
+            height: 20px;
+
+            transition: box-shadow 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        &::before{
+            content: "";
+            pointer-events: none;
+
+            position: absolute;
+            z-index: 2;
+            left: calc(((20px - 15px) * -1) / 2);
+            top: 50%;
+            transform: translateY(-50%) translateX(-100%);
+
+            background-color: #8B67B1;
+            border-radius: 3.75px;
+            width: 15px;
+            height: 0;
+
+            transition: width 0.3s cubic-bezier(0.19, 1, 0.22, 1),
+            height 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+    }
+
+    &__input:focus ~ &__subinput::after{
+        box-shadow: 0 0 5px #8B67B1;
+    }
+    @media (any-hover: hover) {
+        &__input:hover ~ &__subinput::after{
+            box-shadow: 0 0 5px #8B67B1;
+        }
+    }
+    &__input:checked ~ &__subinput::before{
+        height: 15px;
+    }
+}
